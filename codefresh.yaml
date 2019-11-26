@@ -36,7 +36,7 @@ steps:
   deploy_ecs:
     image: codefresh/cf-deploy-ecs
     commands:
-      - cfecs-update --image-name Sri/cf-python --image-tag 'latest' us-east-1 test python
+      - cfecs-update --image-name Sri/cf-python --image-tag 'latest' us-east-1 sri-cf-test python
     environment:
       - AWS_ACCESS_KEY_ID=${{AWS_ACCESS_KEY_ID}}
       - AWS_SECRET_ACCESS_KEY=${{AWS_SECRET_ACCESS_KEY}}
