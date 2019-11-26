@@ -11,7 +11,7 @@ steps:
   main_clone:
     type: "git-clone"
     description: "Cloning main repository..."
-    repo: "Sri-R/cf-python"
+    repo: "Sri-R/cf-python-1"
     revision: "${{CF_BRANCH}}"
     stage: "clone"
   UnitTestDockerImage:
