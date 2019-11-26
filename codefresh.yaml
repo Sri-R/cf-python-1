@@ -30,7 +30,7 @@ steps:
   build:
     title: "Building Docker Image"
     type: "build"
-    image_name: "Sri-R/cf-python"
+    image_name: "Sri/cf-python"
     tag: "${{CF_BRANCH_TAG_NORMALIZED}}"
     dockerfile: "Dockerfile"
     stage: "build"
@@ -64,7 +64,7 @@ steps:
       push:
         title: "Pushing image to cfcr"
         type: "push"
-        image_name: "Sri-R/cf-python"
+        image_name: "Sri/cf-python"
         registry: "cfcr"
         candidate: "${{build}}"
         tags:
@@ -75,7 +75,7 @@ steps:
   deploy_ecs:
     image: codefresh/cf-deploy-ecs
     commands:
-      - cfecs-update --image-name Sri-R/cf-python --image-tag '${{CF_BRANCH_TAG_NORMALIZED}}' us-east-1 test python
+      - cfecs-update --image-name Sri/cf-python --image-tag '${{CF_BRANCH_TAG_NORMALIZED}}' us-east-1 test python
     environment:
       - AWS_ACCESS_KEY_ID=${{AWS_ACCESS_KEY_ID}}
       - AWS_SECRET_ACCESS_KEY=${{AWS_SECRET_ACCESS_KEY}}
