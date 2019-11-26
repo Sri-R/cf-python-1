@@ -67,7 +67,8 @@ steps:
         image_name: "Sri/cf-python"
         registry: "cfcr"
         candidate: "${{build}}"
-        tags: "test"
+        tags:
+          - "test"
     stage: "push"
 
   deploy_ecs:
