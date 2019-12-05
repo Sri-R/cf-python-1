@@ -56,7 +56,7 @@ steps:
     title: "Pushing image to cfcr"
     type: "push"
     image_name: "test"
-    registry: "test"
+    registry: "codefresh"
     candidate: "${{build}}"
     tags:
       - "${{CF_BRANCH_TAG_NORMALIZED}}"
