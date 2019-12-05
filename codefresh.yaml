@@ -65,7 +65,7 @@ steps:
   deploy_ecs:
     image: codefresh/cf-deploy-ecs
     commands:
-      - cfecs-update --image-name  797146828779.dkr.ecr.us-east-1.amazonaws.com/codefresh --image-tag '${{CF_BRANCH_TAG_NORMALIZED}}' us-east-1 test codefresh
+      - cfecs-update --image-name  797146828779.dkr.ecr.us-east-1.amazonaws.com/codefresh --image-tag '${{CF_BRANCH_TAG_NORMALIZED}}' us-east-1 sri-cf-test python
     environment:
       - AWS_ACCESS_KEY_ID=${{AWS_ACCESS_KEY_ID}}
       - AWS_SECRET_ACCESS_KEY=${{AWS_SECRET_ACCESS_KEY}}
