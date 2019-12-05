@@ -55,7 +55,7 @@ steps:
   push:
     title: "Pushing image to cfcr"
     type: "push"
-    image_name: "test"
+    image_name: "codefresh"
     registry: "codefresh"
     candidate: "${{build}}"
     tags:
