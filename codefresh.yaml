@@ -23,7 +23,7 @@ steps:
       - echo $CF_REVISION
       - echo $CF_REVISION > ${{CF_VOLUME_PATH}}/cf-python-1/version
       - cat ${{CF_VOLUME_PATH}}/cf-python-1/version
-      - ls -l ${{CF_VOLUME_PATH}}/cf-pytho-1
+      - ls -l ${{CF_VOLUME_PATH}}/cf-python-1
   UnitTestDockerImage:
     title: Building Test image
     type: build
