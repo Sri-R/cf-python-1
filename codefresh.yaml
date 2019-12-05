@@ -21,9 +21,9 @@ steps:
     stage: 'versioning'
     commands:
       - echo $CF_REVISION
-      - echo $CF_REVISION > ${{CF_VOLUME_PATH}}/cf-python/version
-      - cat ${{CF_VOLUME_PATH}}/cf-python/version
-      - ls -l ${{CF_VOLUME_PATH}}/cf-python
+      - echo $CF_REVISION > ${{CF_VOLUME_PATH}}/cf-python-1/version
+      - cat ${{CF_VOLUME_PATH}}/cf-python-1/version
+      - ls -l ${{CF_VOLUME_PATH}}/cf-python-1
   UnitTestDockerImage:
     title: Building Test image
     type: build
@@ -81,9 +81,9 @@ steps:
           - "${{CF_BRANCH_TAG_NORMALIZED}}"
           - "${{CF_REVISION}}"
     stage: "push"
-  
+
   deploy_ecs:
-    image: codefresh/cf-deploy-ecs 
+    image: codefresh/cf-deploy-ecs
     commands:
       - cfecs-update --image-name Sri-R/cf-python-1 --image-tag '${{CF_BRANCH_TAG_NORMALIZED}}' us-east-1 test cf-service
     environment:
