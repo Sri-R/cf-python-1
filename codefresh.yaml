@@ -40,7 +40,7 @@ steps:
   build:
     title: "Building Docker Image"
     type: "build"
-    image_name: "Sri/cf-python"
+    image_name: "Sri-R/cf-python-1"
     tag: "${{CF_BRANCH_TAG_NORMALIZED}}"
     dockerfile: "Dockerfile"
     stage: "build"
@@ -61,31 +61,31 @@ steps:
         working_directory: "IMAGE_WORK_DIR"
         commands:
           - "echo Annotating Build..."
-          on_success:
-            metadata:
-              set:
-                - ${{build.imageId}}:
-                - CF_QUALITY: true
-          on_error:
-            metadata:
-              set:
-                - ${{build.imageId}}:
-                - CF_QUALITY: false
-    push:
-      title: "Pushing image to cfcr"
-      type: "push"
-      image_name: "sushant08/cf-python"
-      registry: "cfcr"
-      candidate: "${{build}}"
-      tags:
-        - "${{CF_BRANCH_TAG_NORMALIZED}}"
-        - "${{CF_REVISION}}"
+        on_success:
+          metadata:
+            set:
+              - ${{build.imageId}}:
+                  - CF_QUALITY: true
+        on_error:
+          metadata:
+            set:
+              - ${{build.imageId}}:
+                  - CF_QUALITY: false
+      push:
+        title: "Pushing image to cfcr"
+        type: "push"
+        image_name: "Sri-R/cf-python-1"
+        registry: "cfcr"
+        candidate: "${{build}}"
+        tags:
+          - "${{CF_BRANCH_TAG_NORMALIZED}}"
+          - "${{CF_REVISION}}"
     stage: "push"
-
+  
   deploy_ecs:
-    image: codefresh/cf-deploy-ecs
+    image: codefresh/cf-deploy-ecs 
     commands:
-      - cfecs-update --image-name sushant08/cf-python --image-tag '${{CF_BRANCH_TAG_NORMALIZED}}' us-east-1 test cf-service
+      - cfecs-update --image-name Sri-R/cf-python-1 --image-tag '${{CF_BRANCH_TAG_NORMALIZED}}' us-east-1 test cf-service
     environment:
       - AWS_ACCESS_KEY_ID=${{AWS_ACCESS_KEY_ID}}
       - AWS_SECRET_ACCESS_KEY=${{AWS_SECRET_ACCESS_KEY}}
