@@ -35,7 +35,7 @@ class FlaskBookshelfTests(unittest.TestCase):
         result = self.app.get('/')
 
         # assert the response data
-        self.assertEqual(result.data, "Welcome")
+        self.assertEqual(result.data, "xxxxx")
 
     def test_articles_data(self):
         # sends HTTP GET request to the application
