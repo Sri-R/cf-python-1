@@ -74,7 +74,7 @@ steps:
     title: Storing Helm chart
     stage: deploy
     image: 'codefresh/cfstep-helm:2.12.3'
-    working_directory: cf-python/
+    working_directory: cf-python-1/
     environment:
       - ACTION=push
       - CHART_REF=${{CF_VOLUME_PATH}}/cf-python-1/python
