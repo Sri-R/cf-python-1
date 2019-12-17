@@ -43,7 +43,7 @@ steps:
     image: codefresh/cf-docker-test-reporting
     working_directory: '${{CF_VOLUME_PATH}}'
     environment:
-      - BUCKET_NAME=kops08
+      - BUCKET_NAME=sri-codefresh-bucket
       - CF_STORAGE_INTEGRATION=amazon
     stage: "reporting"
   build:
