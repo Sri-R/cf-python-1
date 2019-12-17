@@ -37,7 +37,6 @@ steps:
     stage: test
     image: '${{UnitTestDockerImage}}'
     commands:
-      - python test_basic.py
       - py.test test_basic.py --alluredir ${{CF_VOLUME_PATH}}/allure-results
   reporting_step:
     title: Generate test reporting
@@ -54,6 +53,14 @@ steps:
     tag: "${{CF_BRANCH_TAG_NORMALIZED}}"
     dockerfile: "Dockerfile"
     stage: "build"
+  approval_for_push:
+    type: "pending-approval"
+    title: "Should we run push"
+    when:
+      branch:
+        only:
+          - "master"
+    stage: "push"
   push:
     title: "Pushing image to repo"
     type: "push"
