@@ -54,16 +54,8 @@ steps:
     tag: "${{CF_BRANCH_TAG_NORMALIZED}}"
     dockerfile: "Dockerfile"
     stage: "build"
-  approval_for_push:
-    type: "pending-approval"
-    title: "Should we run push"
-    when:
-      branch:
-        only:
-          - "master"
-    stage: "push"
   push:
-    title: "Pushing image to cfcr"
+    title: "Pushing image to repo"
     type: "push"
     image_name: "codefresh"
     registry: "codefresh"
