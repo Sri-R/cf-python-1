@@ -70,7 +70,6 @@ steps:
     candidate: "${{build}}"
     tags:
       - "${{CF_BRANCH_TAG_NORMALIZED}}"
-      - "${{CF_REVISION}}"
     stage: "push"
   StoreChart:
     title: Storing Helm chart
