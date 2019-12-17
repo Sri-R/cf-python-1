@@ -44,7 +44,7 @@ steps:
     image: codefresh/cf-docker-test-reporting
     working_directory: '${{CF_VOLUME_PATH}}'
     environment:
-      - BUCKET_NAME=sri-codefresh-bucket
+      - BUCKET_NAME=kops08
       - CF_STORAGE_INTEGRATION=amazon
     stage: "reporting"
   build:
@@ -63,7 +63,7 @@ steps:
           - "master"
     stage: "push"
   push:
-    title: "Pushing image to cfcr.."
+    title: "Pushing image to cfcr"
     type: "push"
     image_name: "codefresh"
     registry: "codefresh"
@@ -72,15 +72,13 @@ steps:
       - "${{CF_BRANCH_TAG_NORMALIZED}}"
       - "${{CF_REVISION}}"
     stage: "push"
-  deploy_ecs:
-    image: codefresh/cf-deploy-ecs
-    commands:
-      - cfecs-update --image-name 797146828779.dkr.ecr.us-east-1.amazonaws.com/codefresh --image-tag '${{CF_BRANCH_TAG_NORMALIZED}}' us-east-1 sri-cf-test python
+  StoreChart:
+    title: Storing Helm chart
+    stage: deploy
+    image: 'codefresh/cfstep-helm:2.12.3'
+    working_directory: cf-python/
     environment:
-      - AWS_ACCESS_KEY_ID=${{AWS_ACCESS_KEY_ID}}
-      - AWS_SECRET_ACCESS_KEY=${{AWS_SECRET_ACCESS_KEY}}
-    when:
-      branch:
-        only:
-          - master
-    stage: "deploy"
+      - ACTION=push
+      - CHART_REF=${{CF_VOLUME_PATH}}/cf-python-1/python
+      - CHART_REPO_URL=s3://sri-s3-helm-bucket/charts
+      - RELEASE_NAME=first-chart
