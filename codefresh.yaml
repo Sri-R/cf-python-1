@@ -88,4 +88,4 @@ steps:
     environment:
       - CHART_REF=${{CF_VOLUME_PATH}}/cf-python-1/python
       - RELEASE_NAME=first-chart
-      - KUBE_CONTEXT=codefresh
+      - KUBE_CONTEXT=eks-sandbox-dev
