@@ -9,6 +9,7 @@ stages:
   - "integration"
   - "push"
   - "deploy"
+  - "helmdeploy"
 steps:
   main_clone:
     type: "git-clone"
