@@ -5,6 +5,7 @@ stages:
   - "testimage"
   - "test"
   - "reporting"
+  - "dockergpu"
   - "build"
   - "integration"
   - "push"
@@ -26,6 +27,12 @@ steps:
       - echo $CF_REVISION > ${{CF_VOLUME_PATH}}/cf-python-1/version
       - cat ${{CF_VOLUME_PATH}}/cf-python-1/version
       - ls -l ${{CF_VOLUME_PATH}}/cf-python-1
+  DockerGPUTest:
+    title: testing Dockerfile for GPU
+    type: build
+    stage: 'dockergpu'
+    image_name: test-image
+    dockerfile: DockerfileGPU
   UnitTestDockerImage:
     title: Building Test image
     type: build
